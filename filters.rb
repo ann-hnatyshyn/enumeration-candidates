@@ -2,29 +2,31 @@
 # This way, we keep these methods separated from other potential parts of the program
 
 def find(id)
-  if id === candidate[:id]
-    print candidate
+  if id == candidate[:id]
+    return candidate
   else 
-    print nil
+    return nil
  end
   
   def experienced?(candidate)
-    if candidate[:years_of_experience] >= 2
-      print true
-    else
-      print false
+    if candidate[:years_of_experience] >= 2 ? true : false
   end
   
   def qualified_candidates(candidates)
-    print candidate if
-    candidate[:years_of_experience] >= 2
-    candidate[:github_points] >= 100
-    candidate[:languages] == 'Ruby' || 'Python'
-    candidate[:date_applied] 
+
+    candidates.select do |candidate|
+      experienced? &&
+      candidate[:github_points] >= 100 points &
+      candidate[:lanuages].include("Ruby") && candidate[:lanuages].include('Python')
+      candidate[:date_applied] <= 15.days.ago.to_date
+      candidate[:age] >= 17
+      return candidate
+    end
+
   end
   
   # More methods will go below
 
   def ordered_by_qualifications (candidates)
-    candidates.sort_by{|candidate| [:years_of_experience], [:github_points]}
+    candidates.sort_by{|candidate| [candidate[:years_of_experience], -candidate[:github_points]]}
   end
